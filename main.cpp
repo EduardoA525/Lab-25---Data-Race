@@ -1,8 +1,26 @@
 //Eduardo Avila
+//COMSC - 210 - 5293
+//Lab 25 - Data Race
 
 #include <iostream>
 #include <chrono>
+#include <vector>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <fstream>
+
 using namespace std;
+using namespace std::chrono;
+
+//this will hold final time
+struct TotalTimes{
+    long long vectorTime;
+    long long setTime;
+    long long listTime;
+};
+
+//void bigRaceReading()
 
 int main() {
     
