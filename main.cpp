@@ -20,17 +20,20 @@ struct TotalTimes{
     long long listTime;
 };
 
-void bigRaceReading(vector<string>& readVector, list<string>& readList,
-                    set<string>& readSet, TotalTimes& times);
+void bigRaceReading(vector<string> &readVector, list<string> &readList,
+                    set<string> &readSet, TotalTimes &times);
+
+void bigRaceSorting(vector<string> &sortVector, list<string> &sortList,
+                    set<string> &sortSet, TotalTimes &times);
 
 int main() {
-    vector<string> readVector;
-    set<string> readSet;
-    list<string> readList;
+    vector<string> mainVector;
+    set<string> mainSet;
+    list<string> mainList;
 
     TotalTimes readingTimes;
 
-    bigRaceReading(readVector, readList, readSet, readingTimes);
+    bigRaceReading(mainVector, mainList, mainSet, readingTimes);
 
     cout << "\n*** THE GRAND READING RACE ***\n" << endl;
     cout << "Vector's Time: " << readingTimes.vectorTime << " nanoseconds" << endl;
@@ -40,13 +43,18 @@ int main() {
     return 0;
 }
 
-void bigRaceReading(vector<string>& readVector, list<string>& readList,
-                  set<string>& readSet, TotalTimes& times) {
+void bigRaceReading(vector<string> &readVector, list<string> &readList,
+                  set<string> &readSet, TotalTimes &times) {
 
     //Vector's reading race
     auto start = high_resolution_clock::now();
 
     ifstream finVector("codes.txt");
+    if (!finVector.is_open()){
+        cout << "Vector File Error." << endl;
+        return;
+    }
+
     string text;
 
     while (finVector >> text) {
@@ -65,6 +73,10 @@ void bigRaceReading(vector<string>& readVector, list<string>& readList,
     start = high_resolution_clock::now();
 
     ifstream finList("codes.txt");
+    if (!finList.is_open()){
+        cout << "List File Error." << endl;
+        return;
+    }
 
     while (finList >> text) {
         readList.push_back(text);
@@ -82,6 +94,10 @@ void bigRaceReading(vector<string>& readVector, list<string>& readList,
     start = high_resolution_clock::now();
 
     ifstream finSet("codes.txt");
+    if (!finSet.is_open()){
+        cout << "Set File Error." << endl;
+        return;
+    }
 
     while (finSet >> text) {
         readSet.insert(text);
@@ -93,6 +109,12 @@ void bigRaceReading(vector<string>& readVector, list<string>& readList,
     duration = duration_cast<nanoseconds>(end - start);
 
     times.setTime = duration.count();
+}
+
+void bigRaceSorting(vector<string> &sortVector, list<string> &sortList,
+                    set<string> &sortSet, TotalTimes &times){
+
+
 }
 
 
