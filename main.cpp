@@ -26,6 +26,9 @@ void bigRaceReading(vector<string> &readVector, list<string> &readList,
 void bigRaceSorting(vector<string> &sortVector, list<string> &sortList,
                     set<string> &sortSet, TotalTimes &times);
 
+void bigRaceInserting(vector<string> &insertVector, list<string> &insertList,
+                      set<string> &insertSet, TotalTimes &times);
+
 int main() {
     vector<string> mainVector;
     set<string> mainSet;
@@ -148,7 +151,40 @@ void bigRaceSorting(vector<string> &sortVector, list<string> &sortList,
     times.setTime = -1;
 }
 
+void bigRaceInserting(vector<string> &insertVector, list<string> &insertList,
+                      set<string> &insertSet, TotalTimes &times){
+    //Vector's insertion
+    auto start = high_resolution_clock::now();
 
+    insertVector.insert(insertVector.begin() + insertVector.size() / 2, "TESTCODE");
+
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<nanoseconds>(end - start);
+
+    times.vectorTime = duration.count();
+
+    //List's insertion
+    start = high_resolution_clock::now();
+    auto listMiddle = insertList.begin();
+
+    advance(listMiddle,insertList.size() / 2);
+    insertList.insert(listMiddle, "TESTCODE");
+
+    end = high_resolution_clock::now();
+    duration = duration_cast<nanoseconds>(end-start);
+
+    times.listTime = duration.count();
+    
+    //Set's insertion
+    //since set is always sorted, we dont need to choose middle
+    start = high_resolution_clock::now();
+
+    insertSet.insert("TESTCODE");
+
+    end = high_resolution_clock::now();
+    duration = duration_cast<nanoseconds>(end - start);
+    times.setTime = duration.count();
+}
 
 
 /* syntax examples:
