@@ -29,6 +29,9 @@ void bigRaceSorting(vector<string> &sortVector, list<string> &sortList,
 void bigRaceInserting(vector<string> &insertVector, list<string> &insertList,
                       set<string> &insertSet, TotalTimes &times);
 
+void bigRaceDeleting(vector<string> &deleteVector, list<string> &deleteList,
+                      set<string> &deleteSet, TotalTimes &times);
+
 int main() {
     vector<string> mainVector;
     set<string> mainSet;
@@ -52,6 +55,14 @@ int main() {
     cout << "Set's Time: " << sortingTimes.setTime << " nanoseconds" << endl;
     cout << "List's Time: " << sortingTimes.listTime << " nanoseconds" << endl;
 
+    TotalTimes insertingTimes;
+
+    bigRaceInserting(mainVector, mainList, mainSet, insertingTimes);
+
+    cout << "\n*** THE GRAND INSERTION RACE ***\n" << endl;
+    cout << "Vector's Time: " << insertingTimes.vectorTime << " nanoseconds" << endl;
+    cout << "Set's Time: " << insertingTimes.setTime << " nanoseconds" << endl;
+    cout << "List's Time: " << insertingTimes.listTime << " nanoseconds" << endl;
 
 
     return 0;
@@ -184,6 +195,19 @@ void bigRaceInserting(vector<string> &insertVector, list<string> &insertList,
     end = high_resolution_clock::now();
     duration = duration_cast<nanoseconds>(end - start);
     times.setTime = duration.count();
+
+}
+
+void bigRaceDeleting(vector<string> &deleteVector, list<string> &deleteList,
+                     set<string> &deleteSet, TotalTimes &times){
+    //Vector's deletion
+    auto start = high_resolution_clock::now();
+
+    deleteVector.erase(deleteVector.begin() + deleteVector.size() / 2);
+
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<nanoseconds>(end - start);
+    times.vectorTime = duration.count();
 }
 
 
