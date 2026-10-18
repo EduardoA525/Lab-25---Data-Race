@@ -32,6 +32,9 @@ void bigRaceInserting(vector<string> &insertVector, list<string> &insertList,
 void bigRaceDeleting(vector<string> &deleteVector, list<string> &deleteList,
                       set<string> &deleteSet, TotalTimes &times);
 
+void bigRaceDisplay(TotalTimes &readingTimes, TotalTimes &sortingTimes,
+                    TotalTimes &insertingTimes, TotalTimes &deletingTimes);
+
 int main() {
     vector<string> mainVector;
     set<string> mainSet;
@@ -63,6 +66,16 @@ int main() {
     cout << "Vector's Time: " << insertingTimes.vectorTime << " nanoseconds" << endl;
     cout << "Set's Time: " << insertingTimes.setTime << " nanoseconds" << endl;
     cout << "List's Time: " << insertingTimes.listTime << " nanoseconds" << endl;
+
+    TotalTimes deletingTimes;
+
+    bigRaceDeleting(mainVector, mainList, mainSet, deletingTimes);
+
+    cout << "\n*** THE GRAND DELETING RACE ***\n" << endl;
+    cout << "Vector's Time: " << deletingTimes.vectorTime << " nanoseconds" << endl;
+    cout << "Set's Time: " << deletingTimes.setTime << " nanoseconds" << endl;
+    cout << "List's Time: " << deletingTimes.listTime << " nanoseconds" << endl;
+
 
 
     return 0;
@@ -208,9 +221,41 @@ void bigRaceDeleting(vector<string> &deleteVector, list<string> &deleteList,
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<nanoseconds>(end - start);
     times.vectorTime = duration.count();
+
+    //List's deletion
+    start = high_resolution_clock::now();
+    auto listMiddle = deleteList.begin();
+
+    advance(listMiddle, deleteList.size() / 2);
+
+    deleteList.erase(listMiddle);
+
+    end = high_resolution_clock::now();
+
+    duration = duration_cast<nanoseconds>(end-start);
+
+    times.listTime = duration.count();
+
+    //Set's deletion
+    start = high_resolution_clock::now();
+    auto middleSet = deleteSet.begin();
+    advance(middleSet, deleteSet.size() / 2);
+    deleteSet.erase(middleSet);
+    
+    end = high_resolution_clock::now();
+
+    duration = duration_cast<nanoseconds>(end-start);
+
+    times.setTime = duration.count();
 }
 
+void bigRaceDisplay(TotalTimes &readingTimes, TotalTimes &sortingTimes,
+                    TotalTimes &insertingTimes, TotalTimes &deletingTimes){
 
+
+
+
+}
 /* syntax examples:
 auto start = high_resolution_clock::now()
 auto end = high_resolution_clock::now()
