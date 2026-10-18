@@ -36,47 +36,22 @@ void bigRaceDisplay(TotalTimes &readingTimes, TotalTimes &sortingTimes,
                     TotalTimes &insertingTimes, TotalTimes &deletingTimes);
 
 int main() {
+    //SUPER CLEAN MAIN
     vector<string> mainVector;
     set<string> mainSet;
     list<string> mainList;
 
     TotalTimes readingTimes;
-
-    bigRaceReading(mainVector, mainList, mainSet, readingTimes);
-
-    cout << "\n*** THE GRAND READING RACE ***\n" << endl;
-    cout << "Vector's Time: " << readingTimes.vectorTime << " nanoseconds" << endl;
-    cout << "Set's Time: " << readingTimes.setTime << " nanoseconds" << endl;
-    cout << "List's Time: " << readingTimes.listTime << " nanoseconds" << endl;
-
     TotalTimes sortingTimes;
-
-    bigRaceSorting(mainVector, mainList, mainSet, sortingTimes);
-
-    cout << "\n*** THE GRAND SORTING RACE ***\n" << endl;
-    cout << "Vector's Time: " << sortingTimes.vectorTime << " nanoseconds" << endl;
-    cout << "Set's Time: " << sortingTimes.setTime << " nanoseconds" << endl;
-    cout << "List's Time: " << sortingTimes.listTime << " nanoseconds" << endl;
-
     TotalTimes insertingTimes;
-
-    bigRaceInserting(mainVector, mainList, mainSet, insertingTimes);
-
-    cout << "\n*** THE GRAND INSERTION RACE ***\n" << endl;
-    cout << "Vector's Time: " << insertingTimes.vectorTime << " nanoseconds" << endl;
-    cout << "Set's Time: " << insertingTimes.setTime << " nanoseconds" << endl;
-    cout << "List's Time: " << insertingTimes.listTime << " nanoseconds" << endl;
-
     TotalTimes deletingTimes;
 
+    bigRaceReading(mainVector, mainList, mainSet, readingTimes);
+    bigRaceSorting(mainVector, mainList, mainSet, sortingTimes);
+    bigRaceInserting(mainVector, mainList, mainSet, insertingTimes);
     bigRaceDeleting(mainVector, mainList, mainSet, deletingTimes);
 
-    cout << "\n*** THE GRAND DELETING RACE ***\n" << endl;
-    cout << "Vector's Time: " << deletingTimes.vectorTime << " nanoseconds" << endl;
-    cout << "Set's Time: " << deletingTimes.setTime << " nanoseconds" << endl;
-    cout << "List's Time: " << deletingTimes.listTime << " nanoseconds" << endl;
-
-
+    bigRaceDisplay(readingTimes,sortingTimes,insertingTimes,deletingTimes);
 
     return 0;
 }
@@ -252,6 +227,14 @@ void bigRaceDeleting(vector<string> &deleteVector, list<string> &deleteList,
 void bigRaceDisplay(TotalTimes &readingTimes, TotalTimes &sortingTimes,
                     TotalTimes &insertingTimes, TotalTimes &deletingTimes){
 
+    cout << "\n*** THE GRAND RACE OF THE AGES ***\n" << endl;
+    cout << "RACERS:  Vector\t\tList\t\tSet" << endl;
+    cout << "===================================================" << endl;
+    cout << "READING: " << readingTimes.vectorTime << "\t"
+         << readingTimes.listTime << "\t" << readingTimes.setTime << endl;
+    cout << "SORTING: " << sortingTimes.vectorTime << "\t"
+         << sortingTimes.listTime << "\t\t" << sortingTimes.setTime << endl;
+    
 
 
 
