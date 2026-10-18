@@ -227,18 +227,29 @@ void bigRaceDeleting(vector<string> &deleteVector, list<string> &deleteList,
 void bigRaceDisplay(TotalTimes &readingTimes, TotalTimes &sortingTimes,
                     TotalTimes &insertingTimes, TotalTimes &deletingTimes){
 
-    cout << "\n*** THE GRAND RACE OF THE AGES ***\n" << endl;
+    cout << "\n\t*** THE GRAND RACE OF THE AGES ***\n" << endl;
     cout << "RACERS:  Vector\t\tList\t\tSet" << endl;
-    cout << "===================================================" << endl;
-    cout << "READING: " << readingTimes.vectorTime << "\t"
-         << readingTimes.listTime << "\t" << readingTimes.setTime << endl;
-    cout << "SORTING: " << sortingTimes.vectorTime << "\t"
-         << sortingTimes.listTime << "\t\t" << sortingTimes.setTime << endl;
-    
+    cout << "==================================================" << endl;
 
+    cout << "READING: " << readingTimes.vectorTime << " ns\t"
+         << readingTimes.listTime << " ns\t" << readingTimes.setTime << " ns"<< endl;
 
+    cout << "SORTING: " << sortingTimes.vectorTime << " ns\t"
+         << sortingTimes.listTime << " ns\t" << sortingTimes.setTime << " ns" << endl;
 
+    cout << "INSERTING: " << insertingTimes.vectorTime << " ns\t"
+         << insertingTimes.listTime << " ns\t" << insertingTimes.setTime << " ns" << endl;
+
+    cout << "DELETING: " << deletingTimes.vectorTime << " ns\t"
+         << deletingTimes.listTime << " ns\t" << deletingTimes.setTime << " ns" << endl;
+
+    cout << "==================================================" << endl;
+    cout << "\n\t*** THANK YOU TO OUR SPONSORS ***\n" << endl;
+    cout << "\t\tProfessor Dietrich" << endl;
+    cout << "\t\tDiablo Valley College" << endl;
+    cout << "\t\tEduardo Avila\n" << endl;
 }
+
 /* syntax examples:
 auto start = high_resolution_clock::now()
 auto end = high_resolution_clock::now()
