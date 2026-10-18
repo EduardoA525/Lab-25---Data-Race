@@ -40,6 +40,17 @@ int main() {
     cout << "Set's Time: " << readingTimes.setTime << " nanoseconds" << endl;
     cout << "List's Time: " << readingTimes.listTime << " nanoseconds" << endl;
 
+    TotalTimes sortingTimes;
+
+    bigRaceSorting(mainVector, mainList, mainSet, sortingTimes);
+
+    cout << "\n*** THE GRAND SORTING RACE ***\n" << endl;
+    cout << "Vector's Time: " << sortingTimes.vectorTime << " nanoseconds" << endl;
+    cout << "Set's Time: " << sortingTimes.setTime << " nanoseconds" << endl;
+    cout << "List's Time: " << sortingTimes.listTime << " nanoseconds" << endl;
+
+
+
     return 0;
 }
 
@@ -113,9 +124,31 @@ void bigRaceReading(vector<string> &readVector, list<string> &readList,
 
 void bigRaceSorting(vector<string> &sortVector, list<string> &sortList,
                     set<string> &sortSet, TotalTimes &times){
+    //Vector's sorting
+    auto start = high_resolution_clock::now();
 
+    sort(sortVector.begin(), sortVector.end());
 
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<nanoseconds>(end-start);
+
+    times.vectorTime = duration.count();
+
+    //List's sorting
+    start = high_resolution_clock::now();
+
+    sortList.sort();
+
+    end = high_resolution_clock::now();
+    duration = duration_cast<nanoseconds>(end - start);
+
+    times.listTime = duration.count();
+
+    //Set sorting
+    times.setTime = -1;
 }
+
+
 
 
 /* syntax examples:
